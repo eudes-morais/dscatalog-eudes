@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.eudes.dscatalog.dto.RoleDTO;
 import com.eudes.dscatalog.dto.UserDTO;
 import com.eudes.dscatalog.dto.UserInsertDTO;
+import com.eudes.dscatalog.dto.UserUpdateDTO;
 import com.eudes.dscatalog.entities.Role;
 import com.eudes.dscatalog.entities.User;
 import com.eudes.dscatalog.repositories.RoleRepository;
@@ -65,7 +66,7 @@ public class UserService {
 	}
 
 	@Transactional
-	public UserDTO update(Long id, UserDTO dto) {
+	public UserDTO update(Long id, UserUpdateDTO dto) {
 		
 		try {
 			User entity = repository.getOne(id); // GETONE ainda não está 'mexendo' no BD

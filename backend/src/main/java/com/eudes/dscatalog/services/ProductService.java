@@ -38,9 +38,11 @@ public class ProductService {
 		// Instanciar im objeto em memória sem 'tocar' no BD
 		List<Category> categories = (categoryId == 0 ? null : Arrays.asList(categoryRepository.getOne(categoryId)));
 		
-		Page<Product> list = repository.find(categories, name.trim(), pageable);
-		
-		return list.map(x -> new ProductDTO(x)); // Como o PAGE já é um STREAM do JAVA 8, não precisa do método STREAm e nem do COLLECT
+		Page<Product> page = repository.find(categories, name.trim(), pageable);
+		// Chamada 'seca' para sanar o problemas das N+1 consultas no BD (ver vídeo)
+		// O getcontent já converte a página numa lista
+		repository.findProductsWithCategories(page.getContent()); 
+		return page.map(x -> new ProductDTO(x, x.getCategories())); // Como o PAGE já é um STREAM do JAVA 8, não precisa do método STREAm e nem do COLLECT
 	}
 
 	@Transactional(readOnly = true)

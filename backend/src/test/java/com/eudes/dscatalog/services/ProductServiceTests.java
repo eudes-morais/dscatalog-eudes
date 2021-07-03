@@ -1,5 +1,7 @@
 package com.eudes.dscatalog.services;
 
+import static org.mockito.ArgumentMatchers.any; // Import estático
+
 import java.util.List;
 import java.util.Optional;
 
@@ -7,7 +9,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -53,12 +54,14 @@ public class ProductServiceTests {
 		page = new PageImpl<>(List.of(product));
 		
 		// Simulação de métodos que retornam algo (diferente de VOID)
-		Mockito.when(repository.findAll((Pageable)ArgumentMatchers.any())).thenReturn(page);
-		Mockito.when(repository.save(ArgumentMatchers.any())).thenReturn(product);
+		Mockito.when(repository.findAll((Pageable)any())).thenReturn(page);
+		Mockito.when(repository.save(any())).thenReturn(product);
 		// // Abaixo, por causa do REPOSITORY.FINDBYID da CLASSE PRODUCTSERVICE, são duas
 		// // situações (optional): Uma caso exista o ID e outra caso não exista o ID
 		Mockito.when(repository.findById(existingId)).thenReturn(Optional.of(product));  
 		Mockito.when(repository.findById(nonExistingId)).thenReturn(Optional.empty());
+		
+		Mockito.when(repository.find(any(), any(), any())).thenReturn(page);
 		
 		// Simulação de métodos VOID
 		Mockito.doNothing().when(repository).deleteById(existingId);
@@ -80,15 +83,14 @@ public class ProductServiceTests {
 		Assertions.assertNotNull(result);
 	}
 	
-//	@Test
-//	public void findAllPagedShouldReturnPage() {
-//		
-//		Pageable pageable = PageRequest.of(0, 10);
-//		
-//		Page<ProductDTO> result = service.findAllPaged(pageable);
-//		Assertions.assertNotNull(result);
-//		Mockito.verify(repository).findAll(pageable);
-//	}
+	@Test
+	public void findAllPagedShouldReturnPage() {
+		
+		Pageable pageable = PageRequest.of(0, 10);
+		
+		Page<ProductDTO> result = service.findAllPaged(0L, "", pageable);
+		Assertions.assertNotNull(result);
+	}
 	
 	@Test
 	public void deleteShoulThrowDataBaseExceptionWhenDoNotihngWhenIdDoesNotExists() {

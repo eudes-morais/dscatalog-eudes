@@ -53,39 +53,39 @@ public class ProductServiceIT {
 		});
 	}
 	
-	@Test
-	public void findAllPagedShouldReturnPagedWhenPage0Size10() {
-		
-		PageRequest pageRequest = PageRequest.of(0, 10);
-		
-		Page<ProductDTO> result = service.findAllPaged(pageRequest);
-		
-		Assertions.assertFalse(result.isEmpty()); // Testando se a página que irá retornar não está vazia
-		Assertions.assertEquals(0, result.getNumber()); // Testando se a página que irá retornar é a primeira página 
-		Assertions.assertEquals(10, result.getSize()); // Testando se a página que irá retornar terá 10 produtos
-		Assertions.assertEquals(countTotalProducts, result.getTotalElements()); // Testando se o resultado trará o número total de produtos
-	}
+//	@Test
+//	public void findAllPagedShouldReturnPagedWhenPage0Size10() {
+//		
+//		PageRequest pageRequest = PageRequest.of(0, 10);
+//		
+//		Page<ProductDTO> result = service.findAllPaged(pageRequest);
+//		
+//		Assertions.assertFalse(result.isEmpty()); // Testando se a página que irá retornar não está vazia
+//		Assertions.assertEquals(0, result.getNumber()); // Testando se a página que irá retornar é a primeira página 
+//		Assertions.assertEquals(10, result.getSize()); // Testando se a página que irá retornar terá 10 produtos
+//		Assertions.assertEquals(countTotalProducts, result.getTotalElements()); // Testando se o resultado trará o número total de produtos
+//	}
 	
-	@Test
-	public void findAllPagedShouldEmptyPagedWhenPageDoesNotExist() {
-		
-		PageRequest pageRequest = PageRequest.of(50, 10);
-		
-		Page<ProductDTO> result = service.findAllPaged(pageRequest);
-		
-		Assertions.assertTrue(result.isEmpty()); // Testando se a página que irá retornar não está vazia
-	}
+//	@Test
+//	public void findAllPagedShouldEmptyPagedWhenPageDoesNotExist() {
+//		
+//		PageRequest pageRequest = PageRequest.of(50, 10);
+//		
+//		Page<ProductDTO> result = service.findAllPaged(pageRequest);
+//		
+//		Assertions.assertTrue(result.isEmpty()); // Testando se a página que irá retornar não está vazia
+//	}
 	
-	@Test
-	public void findAllPagedShouldReturnSortedPagedWhenSortByName() {
-		
-		PageRequest pageRequest = PageRequest.of(0, 10, Sort.by("name"));
-		
-		Page<ProductDTO> result = service.findAllPaged(pageRequest);
-		
-		Assertions.assertFalse(result.isEmpty());
-		Assertions.assertEquals("Macbook Pro", result.getContent().get(0).getName());
-		Assertions.assertEquals("PC Gamer", result.getContent().get(1).getName());
-		Assertions.assertEquals("PC Gamer Alfa", result.getContent().get(2).getName());
-	}
+//	@Test
+//	public void findAllPagedShouldReturnSortedPagedWhenSortByName() {
+//		
+//		PageRequest pageRequest = PageRequest.of(0, 10, Sort.by("name"));
+//		
+//		Page<ProductDTO> result = service.findAllPaged(pageRequest);
+//		
+//		Assertions.assertFalse(result.isEmpty());
+//		Assertions.assertEquals("Macbook Pro", result.getContent().get(0).getName());
+//		Assertions.assertEquals("PC Gamer", result.getContent().get(1).getName());
+//		Assertions.assertEquals("PC Gamer Alfa", result.getContent().get(2).getName());
+//	}
 }

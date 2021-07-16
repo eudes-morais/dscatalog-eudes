@@ -106,7 +106,7 @@ public class Product implements Serializable {
 		return categories;
 	}
 	
-	// SETCATEGORIES() removido, pois não de acordo com a modelagem a COLEÇÃO NÃO DEVE SER TROCADA
+	// SETCATEGORIES() removido, pois a COLEÇÃO NÃO DEVE SER TROCADA
 
 	@Override
 	public int hashCode() {

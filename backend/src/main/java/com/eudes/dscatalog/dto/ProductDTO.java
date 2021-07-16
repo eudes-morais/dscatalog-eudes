@@ -113,11 +113,7 @@ public class ProductDTO implements Serializable {
 		return categories;
 	}
 
-	public void setCategories(List<CategoryDTO> categories) {
-		this.categories = categories;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+//	public void setCategories(List<CategoryDTO> categories) {
+//		this.categories = categories;
+//	}
 }

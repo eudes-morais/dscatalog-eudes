@@ -2,3 +2,8 @@
     height: 50px;
     color: white;
 }
+
+.btn-icon:hover {
+    color: white;
+}
+

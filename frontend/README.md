@@ -68,3 +68,28 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### Adding TypeScript
+
+To start a new Create React App project with TypeScript, you can run:
+npx create-react-app my-app --template typescript
+# or
+yarn create react-app my-app --template typescript
+
+To add TypeScript to an existing Create React App project, first install it:
+npm install --save typescript @types/node @types/react @types/react-dom @types/jest
+# or
+yarn add typescript @types/node @types/react @types/react-dom @types/jest
+
+# and including
+Include your *.tsx files in your tsconfig.json:
+
+{
+  "compilerOptions": {
+    // ....
+  },
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
+}
+
+(Extracted by https://create-react-app.dev/docs/adding-typescript and https://stackoverflow.com/questions/68330985/an-import-path-cannot-end-with-a-ts-extension-consider-importing-src-theme)

@@ -1,9 +1,23 @@
 import './assets/styles/custom.scss';
 import './App.css';
+import Navbar from 'components/Navbar';
 
-function App() {
+// function App() {
+//   return (
+//     <>
+//       <h1>DS Catalog</h1>;
+//     </>
+//   );
+// }
+
+// Ou utilizando uma função lambda
+
+const App = () => {
   return (
-    <h1>DS Catalog</h1>
+    <>
+      <Navbar />
+      <h1>DS Catalog</h1>;
+    </>
   );
 }
 
